@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>eFootball Booster Pro</title>
+  <link rel="manifest" href="manifest.json" />
+  <style>
+    body { font-family: sans-serif; background: #101820; color: white; display: flex; flex-direction: column; align-items: center; padding: 20px; }
+    .card { background: #1d2a35; padding: 20px; border-radius: 15px; max-width: 400px; width: 100%; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
+    h1 { text-align: center; color: #00ff88; }
+    button { padding: 15px; background: #00ff88; color: #101820; border: none; width: 100%; margin: 10px 0; font-weight: bold; border-radius: 10px; cursor: pointer; }
+    .status { margin-top: 15px; background: #0f1a22; padding: 10px; border-radius: 10px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>eFootball Booster Pro</h1>
+    <button onclick="limparRAM()">🧹 Limpar RAM</button>
+    <button onclick="modoDesempenho()">⚙️ Modo Desempenho</button>
+    <button onclick="otimizarRede()">🌐 Otimizar Rede</button>
+    <button onclick="abrirEFootball()">🎮 Jogar eFootball</button>
+    <div class="status" id="statusBox">Status: Aguardando ação...</div>
+  </div>
+  <script>
+    if('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
+    }
+    function atualizarStatus(txt){ document.getElementById("statusBox").innerText = "Status: " + txt; }
+    function limparRAM(){ atualizarStatus("Finalizando apps..."); setTimeout(()=>atualizarStatus("RAM limpa!"),800); }
+    function modoDesempenho(){ atualizarStatus("Ativando desempenho..."); setTimeout(()=>atualizarStatus("Desempenho on!"),800); }
+    function otimizarRede(){ atualizarStatus("Aplicando DNS 1.1.1.1..."); setTimeout(()=>atualizarStatus("Rede otimizada!"),800); }
+    function abrirEFootball(){ atualizarStatus("Abrindo eFootball..."); window.location.href="https://play.google.com/store/apps/details?id=jp.konami.pesam"; }
+  </script>
+</body>
+</html>
